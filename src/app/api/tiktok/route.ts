@@ -1,8 +1,11 @@
 export async function GET() {
-  const res = await fetch("https://aweme.snssdk.com/aweme/v1/hot/search/list/");
+  const res = await fetch(
+    "https://aweme.snssdk.com/aweme/v1/hot/search/list/",
+    { cache: "no-cache" },
+  );
   const data = await res.json();
 
-  const list: ListItem[] = data.data.word_list.map(
+  const list: SocialItem[] = data.data.word_list.map(
     (item: Record<string, any>) => {
       return {
         id: item.group_id,

@@ -1,6 +1,6 @@
 "use client";
 import React, { useLayoutEffect, useState } from "react";
-import dayjs from "dayjs";
+import dayjs, { Dayjs } from "dayjs";
 import { Lunar } from "lunar-typescript";
 
 const renderLunarCalendar = () => {
@@ -13,23 +13,28 @@ const renderLunarCalendar = () => {
   return `${gzYear}年 ${IMonthCn}月${IDayCn} 星期${ncWeek}`;
 };
 
-const Timer = () => {
-  const [currentTime, setCurrentTime] = useState(dayjs());
+const current = dayjs();
+const RealTime = () => {
+  const [currentTime, setCurrentTime] = useState<Dayjs | undefined>(void 0);
+
   useLayoutEffect(() => {
     const timer = setInterval(() => {
-      setCurrentTime(currentTime.add(1, "seconds"));
+      setCurrentTime(
+        currentTime ? currentTime.add(1, "seconds") : current.add(1, "seconds"),
+      );
     }, 1000);
 
     return () => {
       timer && clearTimeout(timer);
     };
   });
+
   return (
-    <>
-      <p>{currentTime.format("YYYY-MM-DD HH:mm:ss")}</p>
+    <div>
+      <p>{currentTime?.format("YYYY-MM-DD HH:mm:ss")}</p>
       <p className="text-gray-500">{renderLunarCalendar()}</p>
-    </>
+    </div>
   );
 };
 
-export default Timer;
+export default RealTime;

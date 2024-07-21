@@ -12,7 +12,6 @@ const config = {
   theme: {
     container: {
       center: true,
-      padding: "2rem",
       screens: {
         "2xl": "1400px",
       },
@@ -77,6 +76,7 @@ const config = {
       mobile: { max: "767px" },
       tablet: { min: "768px", max: "1023px" },
       pc: "1024px",
+      xl: "1200px",
     },
   },
   plugins: [require("tailwindcss-animate"), "prettier-plugin-tailwindcss"],

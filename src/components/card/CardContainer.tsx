@@ -5,33 +5,24 @@ import Image from "next/image";
 import { cn } from "@/lib/utils";
 import { calcTimeFromNow } from "@/lib/timeUtils";
 import ListWrap from "./ListWrap";
+import { SocialItem } from "@/types/social";
 
-const CardContainer = ({
-  item,
-}: {
-  item: {
-    id: string;
-    name: string;
-    updateTime: string;
-    fetchTime: string;
-    list: ListItem[];
-  };
-}) => {
+const CardContainer = ({ item }: { item: SocialItem }) => {
   return (
-    <div className="mobile:w-full tablet:w-1/2 w-1/4 cursor-pointer space-y-4 rounded-lg border border-solid border-gray-400 border-opacity-50 p-4 transition-all hover:shadow-[1px_1px_10px_-2px_rgba(0,0,0,0.1),-1px_-1px_10px_-2px_rgba(0,0,0,0.1)]">
+    <div className="cursor-pointer space-y-4 rounded-lg border border-solid border-gray-400 border-opacity-50 p-4 transition-all hover:shadow-[1px_1px_10px_-2px_rgba(0,0,0,0.1),-1px_-1px_10px_-2px_rgba(0,0,0,0.1)]">
       {/* 头部 */}
       <div className="flex items-center justify-between">
         <div className="flex items-center">
           <Image
             width={24}
             height={24}
-            src={`/social/${item.id}.png`}
+            src={`/social/${item.id}.svg`}
             alt={item.name}
             className="mr-2"
           />
           {item.name}
         </div>
-        <span>热榜</span>
+        <span>{item.tip || "热榜"}</span>
       </div>
       {/* 内容 */}
       <ListWrap>

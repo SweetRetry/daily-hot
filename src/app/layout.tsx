@@ -17,14 +17,10 @@ export default function RootLayout({
   return (
     <html lang="zh" suppressHydrationWarning>
       <body>
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="system"
-          enableSystem
-          disableTransitionOnChange
-        >
+        <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           <Header />
-          <main className="pc:px-8 mt-24 px-4">{children}</main>
+
+          <main className="mt-24 px-4 pc:px-8">{children}</main>
 
           <Footer />
         </ThemeProvider>
